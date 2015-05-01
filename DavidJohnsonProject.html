@@ -1,0 +1,111 @@
+﻿<!doctype html>
+<!----BMI.html         David Johnson-->
+<!----Calculate fat % of user       -->
+<!--================================-->
+
+<html>
+ <head>
+  <title>Calculate BMI</title>
+   <script type="text/javascript">
+	function CalculateFatEnglish() //calculates body fat in english units
+	
+	{
+		
+		var weight, height;
+		
+		weight = parseFloat(document.getElementById('weightBoxPds').value); //recives weight value from text box
+		height = parseFloat(document.getElementById('heightBoxInches').value); // recieves height value from text box
+		BMI = weight/height*height*703; // calculates BMI
+		
+	 
+	 
+		if (BMI >= 0) {
+		
+			var sex, age, a, b, c;
+			sex = parseFloat(document.getElementById('sexCheck').value); // recieves value from checkbox
+			age = parseFloat(document.getElementById('ageBox').value); //recieves age from text box
+			a = 1.20*BMI; //multiplies BMI with value
+			b = 0.23*age; //multiplies age with value
+	 
+		if (sex == Male) //changes male to designated value
+			sex = 1;
+	 
+		else if (sex == Female) //changes female to designated value
+			sex = 0;
+		
+		else if (sex == Male + Female) //prevents checking both boxes
+			document.getElementById('outputDiv').innerHTML = 
+				'Please choose 1 sex';
+			
+			c = 10.8*sex; //multiples sex value with other value
+			
+			BodyFat = a + b - c – 5.4; // calculates body fat
+	 
+		document.getElementById('outputDiv').innerHTML = 
+				'You\'re BMI is ' + BMI + ' and you\'re fat % is ' + BodyFat + '%';
+	 
+	 }
+	 }
+	function CalculateFatMetric()
+	
+	{
+	
+		var weight, height;
+		
+		weight = parseFloat(document.getElementById('weightBoxKg').value);
+		height = parseFloat(document.getElementById('heightBoxMeters').value);
+		BMI = weight/height*height;
+	
+	
+		while (BMI >= 0) {
+	 
+		sex = parseFloat(document.getElementById('sexCheck').value);
+		age = parseFloat(document.getElementById('ageBox').value);
+		a = 1.20*BMI;
+		b = 0.23*age;
+		c = 10.8*gender;
+		 
+		if (sex == Male) 
+			sex = 1;
+		 
+		else if (sex == Female)
+			sex = 0;
+			
+		else if (sex == Male + Female)
+			document.getElementById('outputDiv').innerHTML = 
+				'Please choose 1 sex';
+			
+		BodyFat = a + b - c – 5.4;
+		 
+		 
+		document.getElementById('outputDiv').innerHTML = 
+				'You\'re BMI is ' + BMI + ' and you\'re fat % is ' + BodyFat + '%';
+		 
+	 }
+	 }
+	 
+    </script>
+
+ </head>
+ <body>	
+	<p>	
+	<form id = "sexCheck">
+		<input type="checkbox" name="sex" value="Male" checked> I am a male<br> 
+		<input type="checkbox" name="sex" value="Female"> I am a female<br>
+	  Age:<input type="text" id="ageBox" size=6 value=19><br>
+	  Weight in pounds: <input type="text" id="weightBoxPds" size=6 value=150><br>
+	  Height in inches: <input type="text" id="heightBoxInches" size=6 value=65><br>
+	  					<input type="button" value="Calculate in english units" onclick="CalculateFatEnglish();"><br>
+	  or <br>
+	  Weight in kilograms: <input type="text" id="weightBoxKg" size=6><br>
+	  Height in meters: <input type="text" id="heightBoxMeters" size=6><br>
+					<input type="button" value="Calculate in metric units" onclick="CalculateFatMetric();">
+	</form>
+	
+	<p>
+	
+	<hr>
+	<div id="outputDiv"></div>
+	</p>
+ </body>
+</html>
