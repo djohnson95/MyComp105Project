@@ -52,47 +52,6 @@
 	 
 	 }
 	 }
-	function CalculateFatMetric()
-	
-	{
-	
-		var weight, height;
-		
-		weight = parseFloat(document.getElementById('weightBoxKg').value);
-		height = parseFloat(document.getElementById('heightBoxMeters').value);
-		BMI = weight/height*height;
-	
-	
-		if (BMI >= 0) {
-	 
-		sex = parseFloat(document.getElementById('sexCheck').value);
-		age = parseFloat(document.getElementById('ageBox').value);
-		a = 1.20*BMI;
-		b = 0.23*age;
-		c = 10.8*gender;
-		 
-		if (sex == Male) {
-			sex = 1;
-		 }
-		 
-		else if (sex == Female) {
-			sex = 0;
-		
-		}
-		
-		else if (sex == Male + Female){
-			document.getElementById('outputDiv').innerHTML = 
-				'Please choose 1 sex';
-		}
-		
-		BodyFat = a + b - c – 5.4;
-		 
-		 
-		document.getElementById('outputDiv').innerHTML = 
-				'You\'re BMI is ' + BMI + ' and you\'re fat % is ' + BodyFat + '%';
-		 
-	 }
-	 }
 	 
     </script>
 
@@ -102,15 +61,11 @@
 	<form id = "sexCheck">
 		<input type="checkbox" name="sex" value="Male" checked> I am a male<br> 
 		<input type="checkbox" name="sex" value="Female"> I am a female<br>
-	  Age:<input type="text" id="ageBox" size=6 value=19><br>
-	  Weight in pounds: <input type="text" id="weightBoxPds" size=6 value=150><br>
-	  Height in inches: <input type="text" id="heightBoxInches" size=6 value=65><br>
-	  					<input type="button" value="Calculate in english units" onclick="CalculateFatEnglish();"><br>
-	  or <br>
-	  Weight in kilograms: <input type="text" id="weightBoxKg" size=6><br>
-	  Height in meters: <input type="text" id="heightBoxMeters" size=6><br>
-					<input type="button" value="Calculate in metric units" onclick="CalculateFatMetric();">
 	</form>
+	  Age:<input type="text" id="ageBox" size=6 value=19><br>
+	  Weight in pounds: <input type="text" id="weightBoxPds" size=6 value=150>pds<br>
+	  Height in inches: <input type="text" id="heightBoxInches" size=6 value=65>in<br>
+	  					<input type="button" value="Calculate in english units" onclick="CalculateFatEnglish();"><br>
 	
 	<p>
 	
