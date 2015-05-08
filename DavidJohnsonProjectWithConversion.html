@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<!--health.html         									   David Johnson-->
+<!--Calculate fat % of user and can choose between metric and imperial units-->
+<!--========================================================================-->
+
+<html>
+ <head>
+  <title>Calculate Fat %</title>
+   <script type="text/javascript">
+	function CalculateFat() //calculates body fat in english units
+	
+	{
+		
+		var weight, height, BMI, sex, age, a, b, c, BodyFat;
+		age = parseFloat(document.getElementById('ageBox').value); //recieves age from input box
+		
+		
+		if (document.getElementById('w1').checked) //sets units to metric
+			{
+			weight = parseFloat(document.getElementById('weightBox').value); //gathers value from input box
+			}
+			else if (document.getElementById('w2').checked) //sets units to imperial
+				{
+				weight = parseFloat(document.getElementById('weightBox').value)/2.2046; //convert imperial to metric
+				}
+			
+		if (document.getElementById('h1').checked) //sets units to metric
+			{
+			height = parseFloat(document.getElementById('heightBox').value); //gathers value from input box
+			}
+			else if(document.getElementById('h2').checked) //sets units to imperial
+				{
+				height = parseFloat(document.getElementById('heightBox').value)/39.370; //converts units to metric
+				}
+			
+		BMI = Math.round(weight/(height*height)*100) / 100; //calculates BMI using metric units and rounds to the nearest hundreth
+		
+		if (BMI >=8) //sets possible BMI value to the most reasonable minimum
+		{
+			if (document.getElementById('s1').checked) //sets sex to male
+					{
+					sex = parseFloat(document.getElementById('s1').value); //gathers constant value for male which is 1
+					} 					
+				
+			else if (document.getElementById('s2').checked) //sets sex to female
+					{ 
+					sex = parseFloat(document.getElementById('s2').value); //gathers constant value for femal which is 0
+					}
+			
+			a = (1.20*BMI); //multiplies BMI with constant
+			b = (0.23*age); //multiplies age with constant
+			c = (10.8*sex); //multiplies sex constant with constant
+			BodyFat = Math.round((((a + b) - c) - 5.4) * 100) / 100 //calculates body fat
+					
+			document.getElementById('outputDiv').innerHTML =  
+				'You\'re body fat % is ' + BodyFat + '% and your BMI is ' + BMI; //displays output
+		}
+		
+		else //if minimum is not met
+		{
+		document.getElementById('outputDiv').innerHTML = 
+			"Please re-evaluate input"; //displays output
+		}		
+
+	 }
+	 
+    </script>
+ </head>
+ <body>	
+   <h2 style="text-align:center"> Body Calculater </h2>
+   <hr>
+   <h3 style="text-align:center">Please input your information to calculate your current body fat and BMI</h3>
+   <p style="text-align:center" size="10">
+	Age:<input type="text" id="ageBox" size=6><br>
+	Weight: <input type="text" id="weightBox" size=6>
+	<input type="radio" id="w2" name="weight" Checked>pds
+	<input type="radio" id="w1" name="weight">kg<br>
+	Height: <input type="text" id="heightBox" size=6>
+	<input type="radio" id="h2" name="height" Checked>in
+	<input type="radio" id="h1" name="height">m<br>
+	<input type="radio" id="s1" name="sex" value="1" checked> I am a male<br> 
+	<input type="radio" id="s2" name="sex" value="0"> I am a female<br>
+		<input type="button" value="Calculate" onclick="CalculateFat();"><br>
+  </p>
+	
+  <p>
+	<hr>
+	<div id="outputDiv" style="text-align:center"></div>
+  </p>
+ </body>
+</html>
